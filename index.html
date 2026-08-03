@@ -121,6 +121,12 @@
   }
   p{margin:0 0 18px; color:#c9d3da; font-size:16.5px;}
   p strong{color:var(--text);}
+  .cite{
+    font-family:var(--mono);
+    font-size:0.74em;
+    color:var(--muted);
+    white-space:normal;
+  }
   .lede{font-size:19px; color:var(--text);}
   .callout{
     font-family:var(--mono);
@@ -290,7 +296,7 @@
 
   <section id="intro">
     <p class="kicker">Introduction</p>
-    <p class="lede">Most families now keep somewhere between six and twenty connected devices running at all times inside a single house — laptops, phones, smart speakers, video doorbells, thermostats, light bulbs, and printers, all sharing one Wi-Fi network with no separation between them.</p>
+    <p class="lede">Most families now keep somewhere between six and twenty connected devices running at all times inside a single house — laptops, phones, smart speakers, video doorbells, thermostats, light bulbs, and printers, all sharing one Wi-Fi network with no separation between them <span class="cite">(SQ Magazine, 2026; StationX, 2026)</span>.</p>
     <p>Almost none of those devices were built with security as a priority, and almost none of the people who own them have ever been taught that this matters. This paper argues that a specific, teachable networking concept — home network segmentation using Virtual Local Area Networks (VLANs) — should be treated as a core piece of modern computer literacy rather than a specialized skill reserved for IT professionals. Computer literacy has always adjusted to match the risks of the moment; in an age where the average home runs its own small network of interconnected, often vulnerable devices, understanding how to separate that network into safe zones is no longer optional knowledge. It is as fundamental as knowing how to create a strong password.</p>
   </section>
 
@@ -302,14 +308,14 @@
 
   <section id="definition">
     <p class="kicker">What Computer Literacy Means, and Why the Definition Keeps Moving</p>
-    <p>Computer literacy is generally defined as the knowledge and ability to use computers and related technology effectively, ranging from basic operation of a device to advanced problem solving. That definition has never stayed still for long. Early computer literacy programs in the 1980s and 1990s focused almost entirely on operating a machine and running basic software. As the internet matured, the concept expanded to include finding and evaluating information online — what some researchers began calling digital literacy instead.</p>
-    <p>More recently, computer literacy has been described as also requiring some understanding of cybersecurity and online safety, alongside newer domains like artificial intelligence and cloud computing, because those are now the areas where an uninformed user is most exposed to harm. In other words, computer literacy has always grown to cover whatever technology has become common enough, and risky enough, that ignoring it is no longer safe. Home networking is now squarely in that category.</p>
+    <p>Computer literacy is generally defined as the knowledge and ability to use computers and related technology effectively, ranging from basic operation of a device to advanced problem solving <span class="cite">(Wikipedia, n.d.-a)</span>. That definition has never stayed still for long. Early computer literacy programs in the 1980s and 1990s focused almost entirely on operating a machine and running basic software. As the internet matured, the concept expanded to include finding and evaluating information online — what some researchers began calling digital literacy instead <span class="cite">(Wikipedia, n.d.-b)</span>.</p>
+    <p>More recently, computer literacy has been described as also requiring some understanding of cybersecurity and online safety, alongside newer domains like artificial intelligence and cloud computing, because those are now the areas where an uninformed user is most exposed to harm <span class="cite">(American InterContinental University, 2024; University of the Potomac, 2026)</span>. In other words, computer literacy has always grown to cover whatever technology has become common enough, and risky enough, that ignoring it is no longer safe. Home networking is now squarely in that category.</p>
   </section>
 
   <section id="stats">
     <p class="kicker">Figure 1 &middot; The IoT Explosion in the Average Home</p>
     <h2>The scale of the problem is what makes this urgent, not theoretical.</h2>
-    <p>Worldwide, the number of connected IoT devices reached an estimated 21.1 billion by the end of 2025, projected to climb to roughly 39 billion by 2030. Smart home adoption has reached about 82 percent of homes globally, and the average U.S. household now runs around 21 IoT-connected devices at once — sitting, by default, on the exact same network as the laptop that holds tax documents, saved passwords, and financial accounts.</p>
+    <p>Worldwide, the number of connected IoT devices reached an estimated 21.1 billion by the end of 2025, projected to climb to roughly 39 billion by 2030 <span class="cite">(Swif, 2026)</span>. Smart home adoption has reached about 82 percent of homes globally, and the average U.S. household now runs around 21 IoT-connected devices at once <span class="cite">(SQ Magazine, 2026; StationX, 2026)</span> — sitting, by default, on the exact same network as the laptop that holds tax documents, saved passwords, and financial accounts.</p>
     <div class="stat-grid">
       <div class="stat"><span class="num">21.1B</span><span class="lbl">connected IoT devices worldwide (2025)</span></div>
       <div class="stat"><span class="num">82%</span><span class="lbl">of homes globally with smart devices</span></div>
@@ -320,7 +326,7 @@
   <section id="flat-network">
     <p class="kicker">Figure 2 &middot; How a Flat Network Fails</p>
     <h2>One weak device is an open door to everything else in the house.</h2>
-    <p>Most home networks are what network engineers call "flat," meaning every device — from a laptop to a light bulb — sits on the same broadcast domain and can, in principle, talk directly to every other device. Recent industry data shows that about 35 percent of consumer IoT devices still ship with default credentials enabled, 33 percent run outdated, unpatched firmware, and roughly 17 percent contain hardcoded or backdoor logins. An estimated 98 percent of consumer IoT traffic still moves across the network completely unencrypted.</p>
+    <p>Most home networks are what network engineers call "flat," meaning every device — from a laptop to a light bulb — sits on the same broadcast domain and can, in principle, talk directly to every other device. Recent industry data shows that about 35 percent of consumer IoT devices still ship with default credentials enabled, 33 percent run outdated, unpatched firmware, and roughly 17 percent contain hardcoded or backdoor logins <span class="cite">(StationX, 2026)</span>. An estimated 98 percent of consumer IoT traffic still moves across the network completely unencrypted <span class="cite">(StationX, 2026)</span>.</p>
 
     <div class="diagram-panel">
       <svg viewBox="0 0 640 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated diagram of a flat home network where a compromised smart plug spreads reach to every other device">
@@ -374,8 +380,8 @@
   <section id="fix">
     <p class="kicker">Figure 3 &middot; The Fix — VLANs and Segmentation</p>
     <h2>Splitting one network into isolated, rule-governed zones.</h2>
-    <p>The core solution to a flat, vulnerable network is segmentation, and the standard tool for building it is the Virtual Local Area Network, or VLAN. A VLAN uses tagging — most commonly the IEEE 802.1Q standard — to logically split one physical network into several separate, isolated networks, even when every device is plugged into the same router or switch. In a segmented home setup, a router or firewall capable of VLANs can create at least three separate zones: a <strong>trusted zone</strong> for personal computers, phones, and network storage; an <strong>IoT zone</strong> for smart devices; and a <strong>guest zone</strong> for visitors.</p>
-    <p>Firewall rules are then applied between these zones so that, for example, a phone on the trusted network can send a command to a smart thermostat on the IoT zone, but a compromised camera on the IoT zone cannot turn around and scan or connect to the laptop on the trusted zone. This reflects a broader security principle called <strong>zero-trust segmentation</strong>, formalized in NIST Special Publication 800-207, which treats network location as irrelevant and requires every connection between zones to be explicitly permitted rather than assumed to be safe.</p>
+    <p>The core solution to a flat, vulnerable network is segmentation, and the standard tool for building it is the Virtual Local Area Network, or VLAN. A VLAN uses tagging — most commonly the IEEE 802.1Q standard — to logically split one physical network into several separate, isolated networks, even when every device is plugged into the same router or switch <span class="cite">(Tigera, 2026)</span>. In a segmented home setup, a router or firewall capable of VLANs can create at least three separate zones: a <strong>trusted zone</strong> for personal computers, phones, and network storage; an <strong>IoT zone</strong> for smart devices; and a <strong>guest zone</strong> for visitors <span class="cite">(izonemedia360, 2025; Smart Home Security Authority, 2026)</span>.</p>
+    <p>Firewall rules are then applied between these zones so that, for example, a phone on the trusted network can send a command to a smart thermostat on the IoT zone, but a compromised camera on the IoT zone cannot turn around and scan or connect to the laptop on the trusted zone <span class="cite">(izonemedia360, 2025)</span>. This reflects a broader security principle called <strong>zero-trust segmentation</strong>, formalized in NIST Special Publication 800-207, which treats network location as irrelevant and requires every connection between zones to be explicitly permitted rather than assumed to be safe <span class="cite">(Home Cyber Authority, 2026)</span>.</p>
 
     <div class="diagram-panel">
       <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated diagram of a segmented home network with trusted, IoT, and guest VLAN zones, where cross-zone traffic is blocked at the firewall">
@@ -449,13 +455,13 @@
       <div class="fig-caption"><b>Figure 3.</b> The same home network after segmentation. Trusted, IoT, and guest devices sit in separate VLANs; the firewall permits a trusted device to send a command into the IoT zone, but blocks a compromised IoT device from reaching anything trusted.</div>
     </div>
 
-    <p>It is not a theory limited to corporate networks, either. The federal government's own Cybersecurity and Infrastructure Security Agency has published guidance affirming that IoT devices should be placed on isolated network segments specifically to reduce the attack surface they create — and the same underlying logic scales down cleanly to a home router that costs less than $150.</p>
+    <p>It is not a theory limited to corporate networks, either. The federal government's own Cybersecurity and Infrastructure Security Agency has published guidance affirming that IoT devices should be placed on isolated network segments specifically to reduce the attack surface they create <span class="cite">(Smart Home Security Authority, 2026; Cybersecurity and Infrastructure Security Agency, 2024)</span> — and the same underlying logic scales down cleanly to a home router that costs less than $150.</p>
   </section>
 
   <section id="belongs">
     <p class="kicker">Why This Belongs in Computer Literacy, Not Just IT Training</p>
     <p>Most computer literacy courses, including introductory ones, teach word processing, spreadsheets, safe browsing habits, and basic troubleshooting. Very few teach anything about how a home network is actually structured, even though nearly every student taking that class goes home to a router juggling a dozen or more connected devices. That gap does not match the actual risk profile of a modern household.</p>
-    <p>Just as password hygiene and phishing awareness eventually graduated from "advanced IT topics" into baseline digital literacy because everyday users were being harmed by their absence, network segmentation is heading in the same direction. Consumer router manufacturers already know this: most mid-range and higher home routers now ship with a one-click "guest network" toggle, and a growing number expose basic VLAN controls directly in their consumer apps, not buried in an enterprise configuration menu. The technology has already moved into consumer hands. What is missing is the education to go with it.</p>
+    <p>Just as password hygiene and phishing awareness eventually graduated from "advanced IT topics" into baseline digital literacy because everyday users were being harmed by their absence, network segmentation is heading in the same direction. Consumer router manufacturers already know this: most mid-range and higher home routers now ship with a one-click "guest network" toggle, and a growing number expose basic VLAN controls directly in their consumer apps, not buried in an enterprise configuration menu <span class="cite">(Intelligent Living, 2026)</span>. The technology has already moved into consumer hands. What is missing is the education to go with it.</p>
   </section>
 
   <section id="opinion">
